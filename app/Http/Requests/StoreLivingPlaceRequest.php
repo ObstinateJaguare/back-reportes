@@ -24,7 +24,10 @@ class StoreLivingPlaceRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'direccion'     => ['required', 'string',  'max:200'],
+            'barrio'        => ['required', 'string',  'max:200'],
+            'tipoVivienda'  => ['required', 'string',  'max:200'],
+            'descripcion'   => ['required', 'string',  'max:200'],
         ];
     }
 }

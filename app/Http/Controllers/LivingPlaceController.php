@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\LivingPlace;
+use Illuminate\Http\Request;
 use App\Http\Requests\StoreLivingPlaceRequest;
 use App\Http\Requests\UpdateLivingPlaceRequest;
-
 class LivingPlaceController extends Controller
 {
     /**
@@ -15,17 +15,7 @@ class LivingPlaceController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+      return "Hola mundo";
     }
 
     /**
@@ -34,9 +24,37 @@ class LivingPlaceController extends Controller
      * @param  \App\Http\Requests\StoreLivingPlaceRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreLivingPlaceRequest $request)
+    public function store(Request $request,LivingPlace $livingPlace)
     {
-        //
+        try {
+            $livingPlace->direccion = $request->direccion;
+            $livingPlace->barrio = $request->barrio;
+            $livingPlace->tipo = $request->tipoVivienda;
+            $livingPlace->descripcion = $request->descripcion;
+            $livingPlace->propietario = '1';
+
+
+            if($livingPlace->save())
+            {
+
+                return response()->json([
+                    "message"=>"Succees",
+                    "status"=>200,
+                    "data"=>$livingPlace
+                ],200);
+            }else {
+                return response()->json([
+                    "message"=>"Error",
+                    "status"=>201
+                ],201);
+            }
+
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+
+
+
     }
 
     /**
@@ -46,17 +64,6 @@ class LivingPlaceController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(LivingPlace $livingPlace)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\LivingPlace  $livingPlace
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(LivingPlace $livingPlace)
     {
         //
     }

@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\LivingPlaceController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -15,6 +16,8 @@ use App\Http\Controllers\UserController;
 */
 
 Route::resource('users', UserController::class);
+Route::resource('living-places', LivingPlaceController::class);
+
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
